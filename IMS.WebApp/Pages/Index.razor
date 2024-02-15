@@ -1,0 +1,35 @@
+﻿@page "/"
+
+@inject IMS.UseCases.Inventories.Interfaces.IViewInventoriesByNameUseCase ViewInventoriesByNameUseCase
+@inject IMS.UseCases.Inventories.Interfaces.IEditInventoryUseCase EditInventoryUseCase
+<PageTitle> Test Page</PageTitle>
+<br />
+<ul>
+
+    @foreach(var inv in _inventories)
+    {
+        <li> @inv.InventoryName </li>
+    }
+</ul>
+
+@code {
+
+
+    private List<Inventory> _inventories = new List<Inventory>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _inventories = (await ViewInventoriesByNameUseCase.ExecuteAsync()).ToList();
+
+        var inventory = new Inventory { InventoryId = 1, InventoryName = "Bike Seat", Quantity = 101, Price = 2 };
+
+       // await EditInventoryUseCase.ExecuteAsync(inventory);
+
+       //  _inventories = (await ViewInventoriesByNameUseCase.ExecuteAsync( )).ToList();
+    
+    
+        // CTRl + k + k to create bookmark
+    
+        // ctrl +M +M  to expand or collapse a block of code
+    }
+}
