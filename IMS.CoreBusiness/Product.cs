@@ -11,7 +11,6 @@ namespace IMS.CoreBusiness
     {
         public int ProductId { get; set; }
 
-
         [Required]
         [StringLength(150)]
         public string ProductName { get; set; } = string.Empty;
